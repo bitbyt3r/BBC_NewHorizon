@@ -1,0 +1,100 @@
+<html>
+    <head>
+        <title>Ken Burns' Pluto</title>
+        <style>
+            body {
+                background-color: #000000;
+                margin: 0px;
+                overflow: hidden;
+            }
+            #imageContainer {
+                background-color: #ffffff;
+                width: 100%;
+                position: absolute;
+                transform: translate(-1000px, -1000px) scale(0.5);
+                transition: all 2.5s ease-in-out;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="imageContainer">
+            <img src="full.png">
+        </div>
+        <script type="text/javascript">
+            el = document.getElementById("imageContainer");
+            var x = 0;
+            var y = 0;
+            var ch = 0;
+            var cw = 0;
+            function windowResize() {
+                var height = window.innerHeight;
+                ch = height / 2;
+                cw = window.innerWidth / 2;
+                el.style.height = height+"px";
+            }
+            window.onresize = windowResize;
+            window.onload = windowResize;
+
+            var timer = null;
+
+            var points = [
+              [-1869, -5193, 10, 5, true], // virgil
+              [-2524, -5193, 11, 30, false],
+              [-2019, -6220, 10, 5, true], // red
+              [-3793, -6220, 11, 30, false],
+              [-4726, -7108, 12, 5, false], // volcano
+              [-3424, -4104, 10, 5, true], // mountain
+              [-3792, -3128, 10, 30, false],
+              [-5136, -2960, 8, 5, true], // Sputnik
+              [-5176, -5880, 7, 30, false],
+              [-7280, -5024, 10, 5, true], // Penitentas
+              [-7288, -3336, 9, 30, false],
+              [-4000, -4000, 1, 5, false], // Full
+            ]
+
+            function goTo(point) {
+                style = window.getComputedStyle(el);
+                el.style.transform = style.getPropertyValue('transform');
+                x = points[point][0];
+                y = points[point][1];
+                s = points[point][2];
+                t = points[point][3];
+                clearTimeout(timer);
+                if (points[point][4]) {
+                    timer = setTimeout(() => goTo(point+1), t*1000);
+                }
+                maxScale = window.innerHeight / 8000;
+                scale = maxScale * s;
+                dx = x*scale;
+                dy = y*scale;
+                el.style.transition = "all " + t + "s ease-in-out";
+                el.style.transform = "translate(" + dx + "px, " + dy + "px) scale(" + scale + ") translate("+cw+"px, "+ch+"px)";
+            }
+
+            function changeTarget(event) {
+                if (event.code === "Digit1") {
+                    goTo(0);
+                }
+                if (event.code === "Digit2") {
+                    goTo(2);
+                }
+                if (event.code === "Digit3") {
+                    goTo(4);
+                }
+                if (event.code === "Digit4") {
+                    goTo(5);
+                }
+                if (event.code === "Digit5") {
+                    goTo(7);
+                }
+                if (event.code === "Digit6") {
+                    goTo(9);
+                }
+                if (event.code === "Digit7") {
+                    goTo(11);
+                }
+            }
+            window.addEventListener("keydown", changeTarget);
+        </script>
+    </body>
+</html>

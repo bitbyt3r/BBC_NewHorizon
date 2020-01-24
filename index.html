@@ -94,6 +94,10 @@
                 if (event.code === "Digit7") {
                     goTo(11);
                 }
+                if (event.code === "Digit0") {
+                    style = window.getComputedStyle(el);
+                    el.style.transform = style.getPropertyValue('transform');
+                }
             }
             window.addEventListener("keydown", changeTarget);
         </script>

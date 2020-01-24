@@ -95,6 +95,7 @@
                     goTo(11);
                 }
                 if (event.code === "Digit0") {
+                    clearTimeout(timer);
                     style = window.getComputedStyle(el);
                     el.style.transform = style.getPropertyValue('transform');
                 }

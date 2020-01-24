@@ -51,6 +51,8 @@
               [-7280, -5024, 7, 5, true], // Penitentas
               [-7288, -3336, 9, 45, false],
               [-4000, -4000, 1, 5, false], // Full
+              [-4000, -4000, 1, 15, true],
+              [-4000, -4000, 4, 15, false],
             ]
 
             function goTo(point) {
@@ -93,6 +95,9 @@
                 }
                 if (event.code === "Digit7") {
                     goTo(11);
+                }
+                if (event.code === "Digit8") {
+                    goTo(12);
                 }
                 if (event.code === "Digit0") {
                     clearTimeout(timer);

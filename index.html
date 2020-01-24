@@ -38,17 +38,17 @@
             var timer = null;
 
             var points = [
-              [-1869, -5193, 8, 5, true], // virgil
-              [-2524, -5193, 9, 30, false],
-              [-2019, -6220, 8, 5, true], // red
-              [-3793, -6220, 9, 30, false],
-              [-4726, -7108, 8, 5, false], // volcano
+              [-1869, -5193, 7, 5, true], // virgil
+              [-2524, -5193, 8, 120, false],
+              [-2019, -6220, 7, 5, true], // red
+              [-3793, -6220, 8, 120, false],
+              [-4726, -7108, 7, 5, false], // volcano
               [-3424, -4104, 7, 5, true], // mountain
-              [-3792, -3128, 8, 30, false],
+              [-3792, -3128, 8, 120, false],
               [-5136, -2960, 6, 5, true], // Sputnik
-              [-5176, -5880, 7, 30, false],
-              [-7280, -5024, 8, 5, true], // Penitentas
-              [-7288, -3336, 9, 30, false],
+              [-5176, -5880, 7, 120, false],
+              [-7280, -5024, 7, 5, true], // Penitentas
+              [-7288, -3336, 8, 120, false],
               [-4000, -4000, 1, 5, false], // Full
             ]
 
@@ -61,7 +61,7 @@
                 t = points[point][3];
                 clearTimeout(timer);
                 if (points[point][4]) {
-                    timer = setTimeout(() => goTo(point+1), t*1000);
+                    timer = setTimeout(() => goTo(point+1), t*1000+500);
                 }
                 maxScale = window.innerHeight / 8000;
                 scale = maxScale * s;
